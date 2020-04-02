@@ -1,5 +1,0 @@
-<apex:component controller="fHCM2.CollaborationPortalRAController">
-    <script> 
-        console.log('CollaborationPortalRAComponent loaded', fHCM2)
-    </script>
-</apex:component>

@@ -1,9 +1,0 @@
-<apex:page>
-    <!--
-        This page is used to ensure that Custom Labels not referenced elsewhere
-        in static Apex are included in the package.
-    -->
-    <apex:outputpanel rendered="false">
-        {!$Label.Performance_Policy_Tab_Name}
-    </apex:outputPanel>
-</apex:page>

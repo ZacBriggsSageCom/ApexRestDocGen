@@ -36,7 +36,7 @@ void clsProjectParser(std::string directoryPath, std::list<RestEndpoint> &endpoi
         // Ignore if path contains '_deprecated' && Only create files for files ending in .cls
         if (p.path().string().find("_deprecated") == std::string::npos && p.path().extension().string() == ".cls")
         {
-            fileReader = new ClsFile(p.path(), p.path().filename());
+            fileReader = new ClsFile(p.path().string(), p.path().filename().string());
             // If file has an endpoint, save it to endpoint list
             if (fileReader->endpoint->isEndpoint)
             {
