@@ -1,0 +1,125 @@
+<apex:page controller="GlobalConfigureController">
+
+    <style>
+        .section-header {
+            color: #4a4a56;
+            display: block;
+            font-size: 1.092em;
+            font-weight: bold;
+        }
+
+        .section-description {
+            color: #4a4a56;
+            display: block;
+            margin-bottom: 20px;
+            max-width: 670px;
+        }
+
+        .space-before {
+            margin-top: 20px;
+        }
+    </style>
+
+    <apex:slds />
+
+    <apex:sectionHeader
+            title="{!$Label.Performance_Management_Global_Configuration}"
+            subtitle="{!$Label.Performance_Management_Name}" />
+
+    <apex:form>
+
+        <apex:pageMessages escape="false" />
+
+        <apex:pageBlock title="{!$Label.fHCM2__Global_Details}" mode="edit">
+
+            <apex:pageBlockButtons>
+                <apex:commandButton action="{!save}" value="{!$Label.fHCM2__Button_Save}"/>
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockSection title="{!$Label.Conversations_Heading}" columns="1">
+
+                <apex:pageBlockSectionItem>
+                    <apex:outputLabel value="Enable Conversations in All Policies" />
+                    <apex:commandButton
+                            action="{!enableConversationsInAllPolicies}"
+                            value="Enable" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem>
+                    <apex:outputLabel value="Disable Conversations in All Policies" />
+                    <apex:commandButton
+                            action="{!disableConversationsInAllPolicies}"
+                            value="Disable" />
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection title="{!$Label.Objectives_Heading}" columns="1">
+
+                <apex:outputText styleClass="section-header" value="{!$Label.Configure_Enhanced_Objectives_Header}"></apex:outputText>
+                <apex:outputText styleClass="section-description" value="{!$Label.Objectives_Policy_Intro_Text}"></apex:outputText>
+
+                <apex:pageBlockSectionItem>
+                    <apex:outputLabel value="Enable Objectives in All Policies" />
+                    <apex:commandButton
+                            action="{!enableObjectivesInAllPolicies}"
+                            value="Enable" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem>
+                    <apex:outputLabel value="Disable Objectives in All Policies" />
+                    <apex:commandButton
+                            action="{!disableObjectivesInAllPolicies}"
+                            value="Disable" />
+                </apex:pageBlockSectionItem>
+
+                <apex:outputText styleClass="section-header space-before" value="{!$Label.Configure_Selection_Options_Header}"></apex:outputText>
+                <apex:outputText styleClass="section-description" value="{!$Label.Configure_Selection_Options_Description}"></apex:outputText>
+
+                <apex:pageBlockSectionItem>
+                    <apex:outputLabel value="Category" />
+                    <apex:inputTextarea
+                            rows="8"
+                            cols="40"
+                            html-placeholder="{!categoryPlaceholder}"
+                            value="{!cfg.Objective_Category_Options__c}">
+                    </apex:inputTextarea>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem>
+                    <apex:outputLabel value="Company Objective" />
+                    <apex:inputTextarea
+                            rows="8"
+                            cols="40"
+                            html-placeholder="{!companyObjectivePlaceholder}"
+                            value="{!cfg.Company_Objective_Options__c}">
+                    </apex:inputTextarea>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem>
+                    <apex:outputLabel value="Priority" />
+                    <apex:inputTextarea
+                            rows="8"
+                            cols="40"
+                            html-placeholder="{!priorityPlaceholder}"
+                            value="{!cfg.Objective_Priority_Options__c}">
+                    </apex:inputTextarea>
+                </apex:pageBlockSectionItem>
+
+                <apex:outputText styleClass="section-header space-before" value="{!$Label.Configure_Aligned_Objectives_Header}"></apex:outputText>
+                <apex:outputText styleClass="section-description" value="{!$Label.Configure_Aligned_Objectives_Description}"></apex:outputText>
+
+                <apex:pageBlockSectionItem>
+                    <apex:outputLabel value="Enabled" />
+                    <apex:inputCheckbox
+                            value="{!cfg.Aligned_Objectives_Enabled__c}">
+                    </apex:inputCheckbox>
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+
+        </apex:pageBlock>
+
+    </apex:form>
+
+</apex:page>

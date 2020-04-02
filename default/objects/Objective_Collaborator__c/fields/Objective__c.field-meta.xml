@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Objective__c</fullName>
+    <description>The Objective on which the Team Member can collaborate.</description>
+    <externalId>false</externalId>
+    <label>Objective</label>
+    <referenceTo>Objective__c</referenceTo>
+    <relationshipLabel>Objective Collaborators</relationshipLabel>
+    <relationshipName>Objective_Collaborators</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

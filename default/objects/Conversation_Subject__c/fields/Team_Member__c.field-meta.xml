@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Team_Member__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Subject record for a conversation about a Team Member.</description>
+    <externalId>false</externalId>
+    <label>Team Member</label>
+    <referenceTo>fHCM2__Team_Member__c</referenceTo>
+    <relationshipLabel>Conversation Subjects</relationshipLabel>
+    <relationshipName>Conversation_Subjects</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

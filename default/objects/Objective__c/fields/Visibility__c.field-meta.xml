@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Visibility__c</fullName>
+    <description>Visibility of an objective, e.g. &#39;public&#39;, &#39;team&#39;, &#39;private&#39;.</description>
+    <externalId>false</externalId>
+    <label>Visibility</label>
+    <length>32</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,26 @@
+<apex:component controller="PerformancePolicyComponentController">
+
+    <apex:attribute name="tabFocusName" description="Tab identifier when setting the current tab" type="String" assignTo="{!tabName}"/>
+
+    <apex:pageBlock title="{!$Label.Performance_Management_Policy_Details}" mode="view">
+
+        <apex:pageBlockButtons >
+            <input value="{!$Label.fhcm2__button_edit}"
+                    class="btn"
+                    name="{!$Label.fhcm2__button_edit}"
+                    onclick="navigateToUrl('{!editPageUrl}')"
+                    type="button" />
+        </apex:pageBlockButtons>
+
+        <apex:pageBlockSection title="{!$Label.Conversations_Heading}" columns="1">
+            <apex:outputField value="{!Policy.Conversations_Is_Active__c}" />
+            <apex:outputField value="{!Policy.Allow_Edit_Feedback__c}" />
+        </apex:pageBlockSection>
+
+        <apex:pageBlockSection title="{!$Label.Objectives_Heading}" columns="1">
+            <apex:outputField value="{!Policy.Objectives_Is_Active__c}" />
+        </apex:pageBlockSection>
+
+    </apex:pageBlock>
+
+</apex:component>

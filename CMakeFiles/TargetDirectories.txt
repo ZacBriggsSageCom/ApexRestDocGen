@@ -1,0 +1,3 @@
+/Users/zacharybriggs/work/apexdoc/CMakeFiles/rebuild_cache.dir
+/Users/zacharybriggs/work/apexdoc/CMakeFiles/edit_cache.dir
+/Users/zacharybriggs/work/apexdoc/CMakeFiles/ApexRestDoc.dir

@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/zacharybriggs/work/apexdoc/RestEndpoint.h
+string
+-
+map
+-
+vector
+-
+
+/Users/zacharybriggs/work/apexdoc/main.cpp
+iostream
+-
+fstream
+-
+string
+-
+sstream
+-
+filesystem
+-
+./RestEndpoint.h
+/Users/zacharybriggs/work/apexdoc/RestEndpoint.h
+

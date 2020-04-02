@@ -1,0 +1,15 @@
+<apex:page sidebar="false"
+        showHeader="false"
+        applyHtmlTag="false"
+        applyBodyTag="false"
+        standardStylesheets="false">
+
+    <apex:stylesheet value="fonts.googleapis.com/css?family=Noto+Sans:400,700&amp;subset=latin,latin-ext"/>
+    <apex:stylesheet value="{!URLFOR('/apex/fHCM2__CollaborationPortalCSS')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.fHCM2__collaborationportal, '/node_modules/bootstrap/dist/css/bootstrap.css')}"/>
+
+    <div class="wx-tile-iframe__contents">
+        <!-- TODO -->
+    </div>
+
+</apex:page>
