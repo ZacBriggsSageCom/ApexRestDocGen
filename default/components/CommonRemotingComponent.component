@@ -1,5 +1,0 @@
-<apex:component controller="CommonRemoting">
-    <script> 
-        var userLocale = "{!userLocale}";
-    </script>
-</apex:component>

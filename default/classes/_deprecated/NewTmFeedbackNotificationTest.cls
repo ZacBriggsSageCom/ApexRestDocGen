@@ -1,3 +1,0 @@
-public class NewTmFeedbackNotificationTest {
-    // Deprecated
-}
