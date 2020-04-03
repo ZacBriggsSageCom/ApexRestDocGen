@@ -1,3 +1,4 @@
+#ifndef RESTENDPOINT_H
 #define RESTENDPOINT_H
 
 #include <string>
@@ -46,3 +47,5 @@ private:
 
     void setTagsIndex();
 };
+
+#endif
