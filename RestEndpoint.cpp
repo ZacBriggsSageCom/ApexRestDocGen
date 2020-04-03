@@ -3,63 +3,23 @@
 
 void RestEndpoint::populateAddress()
 {
-    int addIndex = mapToIndex[ADDRESS_TAG];
-    int beginningIndex = 0;
-    int endIndex = 0;
-
     address = getSymbolBetweenAfter(*fs, 0, "='", ")");
-    // for (int i = addIndex; fs->at(i) != ')'; i++)
-    // {
-    //     endIndex = i;
-    //     if (fs->substr(i, 2) == "='")
-    //     {
-    //         beginningIndex = i + 2; // last space encountered before name of function
-    //     }
-    // }
-    // address = fs->substr(beginningIndex, endIndex - beginningIndex);
 }
 
 void RestEndpoint::populateEndpoints()
 {
-    if (mapToIndex[GET_TAG])
+    for (int i = 1; i < 6; i++)
     {
-        rest_endpoint get;
-        get.httpMethod = "GET";
-        get.method = getTagMethod(mapToIndex[GET_TAG]);
-        get.description = getTagComment(mapToIndex[GET_TAG]);
-        endpoints.push_back(get);
-    }
-    if (mapToIndex[POST_TAG])
-    {
-        rest_endpoint post;
-        post.httpMethod = "POST";
-        post.method = getTagMethod(mapToIndex[POST_TAG]);
-        post.description = getTagComment(mapToIndex[POST_TAG]);
-        endpoints.push_back(post);
-    }
-    if (mapToIndex[PUT_TAG])
-    {
-        rest_endpoint put;
-        put.httpMethod = "PUT";
-        put.method = getTagMethod(mapToIndex[PUT_TAG]);
-        put.description = getTagComment(mapToIndex[PUT_TAG]);
-        endpoints.push_back(put);
-    }
-    if (mapToIndex[PATCH_TAG])
-    {
-        rest_endpoint patch;
-        patch.httpMethod = "PATCH";
-        patch.method = getTagMethod(mapToIndex[PATCH_TAG]);
-        patch.description = getTagComment(mapToIndex[PATCH_TAG]);
-        endpoints.push_back(patch);
-    }
-    if (mapToIndex[DELETE_TAG])
-    {
-        rest_endpoint del;
-        del.httpMethod = "DELETE";
-        del.method = getTagMethod(mapToIndex[DELETE_TAG]);
-        del.description = getTagComment(mapToIndex[DELETE_TAG]);
-        endpoints.push_back(del);
+        if (mapToIndex.find(tags[i]) != mapToIndex.end())
+        {
+            rest_endpoint endpoint;
+            std::string httpMethod = tags[i];
+            removeStringFromString(httpMethod, "@Http");
+            endpoint.httpMethod = httpMethod;
+            endpoint.method = getTagMethod(mapToIndex[tags[i]]);
+            endpoint.description = getTagComment(mapToIndex[tags[i]]);
+            endpoints.push_back(endpoint);
+        }
     }
 }
 
@@ -82,34 +42,20 @@ void RestEndpoint::setTagsIndex()
 {
     for (int i = 0; i < fs->length(); i++)
     {
-        if (fs->at(i) == '@')
+        if (fs->at(i) == '@') // If we are at the start of a tags
         {
-            if (fs->substr(i, ADDRESS_TAG.length()) == ADDRESS_TAG)
+            for (std::string tag : tags) // Iterate over the array of tags
             {
-                mapToIndex.insert(std::make_pair(ADDRESS_TAG, i));
-                isEndpoint = true;
-            }
-            if (fs->substr(i, GET_TAG.length()) == GET_TAG)
-            {
-                mapToIndex.insert(std::make_pair(GET_TAG, i));
-            }
-            if (fs->substr(i, POST_TAG.length()) == POST_TAG)
-            {
-                mapToIndex.insert(std::make_pair(POST_TAG, i));
-            }
-            if (fs->substr(i, PUT_TAG.length()) == PUT_TAG)
-            {
-                mapToIndex.insert(std::make_pair(PUT_TAG, i));
-            }
-            if (fs->substr(i, PATCH_TAG.length()) == PATCH_TAG)
-            {
-                mapToIndex.insert(std::make_pair(PATCH_TAG, i));
-            }
-            if (fs->substr(i, DELETE_TAG.length()) == DELETE_TAG)
-            {
-                mapToIndex.insert(std::make_pair(DELETE_TAG, i));
+                if (fs->substr(i, tag.length()) == tag) // If we match one
+                {
+                    mapToIndex.insert(std::pair(tag, i)); // Add its index to the map
+                }
             }
         }
+    }
+    if (mapToIndex.find(tags[0]) != mapToIndex.end()) // If we found the address tag
+    {
+        isEndpoint = true; // Then we expect this to be an endpont
     }
 }
 

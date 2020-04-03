@@ -25,6 +25,15 @@ public:
 
     std::string *fs;
     std::string filename;
+
+    std::string tags[6] = {
+        "@RestResource",
+        "@HttpGet",
+        "@HttpPost",
+        "@HttpPut",
+        "@HttpPatch",
+        "@HttpDelete"};
+
     std::map<std::string, int> mapToIndex;
     std::vector<rest_endpoint> endpoints;
     std::string address;
