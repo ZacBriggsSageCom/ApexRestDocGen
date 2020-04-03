@@ -18,13 +18,13 @@ void clsProjectParser(std::string directoryPath, std::list<RestEndpoint> &endpoi
             }
         }
     }
-
     return;
 }
 
-void convertToMarkdown(std::list<RestEndpoint> endpoints, std::string &markdownOut)
+void processToConfluenceMarkup(std::list<RestEndpoint> endpoints, std::string &markdownOut)
 {
     std::stringstream fmt;
+    fmt << "The following output is a table compatible with Confluence Wiki Markup:\n\n";
     fmt << "| *Name* | *Address* | *HTTP Method* | *Class Method* | *Description* |" << std::endl;
 
     for (RestEndpoint r : endpoints)
@@ -33,8 +33,27 @@ void convertToMarkdown(std::list<RestEndpoint> endpoints, std::string &markdownO
         for (rest_endpoint e : r.endpoints)
         {
             e.description.erase(std::remove(e.description.begin(), e.description.end(), '\n'), e.description.end());
+            fmt << "| " << r.filename << " | " << r.address << " | " << e.httpMethod << " | " << e.method << " | " << e.description << " |" << std::endl;
+        }
+    }
+    markdownOut = fmt.str();
+}
 
-            fmt << "| " << r.filename << " | " << r.address << " | " << e.httpMethod << " | " << e.method << " | " << e.description << std::endl;
+void processToMarkdown(std::list<RestEndpoint> endpoints, std::string &markdownOut)
+{
+    std::stringstream fmt;
+    fmt << "The following output is a table compatble with markdown:\n\n";
+
+    fmt << "| **Name** | **Address** | **HTTP Method** | **Class Method** | **Description** |" << std::endl;
+    fmt << "| -------- | ----------- | --------------- | ---------------- | --------------- |" << std::endl;
+
+    for (RestEndpoint r : endpoints)
+    {
+        replaceStringInString(r.address, "*", "\\*");
+        for (rest_endpoint e : r.endpoints)
+        {
+            e.description.erase(std::remove(e.description.begin(), e.description.end(), '\n'), e.description.end());
+            fmt << "| " << r.filename << " | " << r.address << " | " << e.httpMethod << " | " << e.method << " | " << e.description << " |" << std::endl;
         }
     }
     markdownOut = fmt.str();

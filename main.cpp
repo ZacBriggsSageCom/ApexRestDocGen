@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     std::list<RestEndpoint> endpoints;
     std::string mdString;
     clsProjectParser("./", endpoints);
-    convertToMarkdown(endpoints, mdString);
+    processToConfluenceMarkup(endpoints, mdString);
     std::cout << mdString << std::endl;
     return 0;
 }

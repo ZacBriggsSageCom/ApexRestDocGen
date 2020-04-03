@@ -3,7 +3,7 @@
 
 void RestEndpoint::populateAddress()
 {
-    address = getSymbolBetweenAfter(*fs, 0, "='", ")");
+    address = getSymbolBetweenAfter(*fs, 0, "='", "')");
 }
 
 void RestEndpoint::populateEndpoints()

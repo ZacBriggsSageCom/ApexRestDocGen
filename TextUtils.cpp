@@ -6,7 +6,7 @@ std::string getSymbolBetweenAfter(std::string &input, int searchFromIndex, std::
     int indexEnd = 0;
     for (int i = searchFromIndex; input.substr(i, matchEnd.length()) != matchEnd; i++)
     {
-        indexEnd = i + matchStart.length();
+        indexEnd = i + 1;
 
         if (input.substr(i, matchStart.length()) == matchStart)
         {
@@ -16,25 +16,22 @@ std::string getSymbolBetweenAfter(std::string &input, int searchFromIndex, std::
     return input.substr(indexStart, indexEnd - indexStart);
 }
 
+// Works by finding the beginning of sequence occuring before the searchFromIndex
+// And then performing a forward search from that point.
 std::string getSymbolBetweenBefore(std::string &input, int searchFromIndex, std::string matchStart, std::string matchEnd)
 {
     int indexStart = 0;
-    int indexEnd = 0;
-    for (int i = searchFromIndex; input.substr(i - matchStart.length(), matchStart.length()) != matchStart; i--)
-    {
-        indexStart = i + matchStart.length();
 
-        if (input.substr(i, matchEnd.length()) == matchEnd)
-        {
-            indexEnd = i + matchEnd.length();
-        }
+    for (int i = searchFromIndex; input.substr(i, matchStart.length()) != matchStart; i--)
+    {
+        indexStart = i - matchStart.length();
 
         if (input.at(i) == '}' || input.at(i) == '{')
         { // There was no comment before previous function begins
             return "No Comment Found\n";
         }
     }
-    return input.substr(indexStart, indexEnd - indexStart);
+    return getSymbolBetweenAfter(input, indexStart, matchStart, matchEnd);
 }
 
 void removeStringFromString(std::string &input, std::string remove)
