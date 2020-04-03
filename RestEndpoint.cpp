@@ -1,4 +1,5 @@
 #include "RestEndpoint.h"
+#include "TextUtils.h"
 
 void RestEndpoint::populateAddress()
 {
@@ -6,15 +7,16 @@ void RestEndpoint::populateAddress()
     int beginningIndex = 0;
     int endIndex = 0;
 
-    for (int i = addIndex; fs->at(i) != ')'; i++)
-    {
-        endIndex = i;
-        if (fs->substr(i, 2) == "='")
-        {
-            beginningIndex = i + 2; // last space encountered before name of function
-        }
-    }
-    address = fs->substr(beginningIndex, endIndex - beginningIndex);
+    address = getSymbolBetweenAfter(*fs, 0, "='", ")");
+    // for (int i = addIndex; fs->at(i) != ')'; i++)
+    // {
+    //     endIndex = i;
+    //     if (fs->substr(i, 2) == "='")
+    //     {
+    //         beginningIndex = i + 2; // last space encountered before name of function
+    //     }
+    // }
+    // address = fs->substr(beginningIndex, endIndex - beginningIndex);
 }
 
 void RestEndpoint::populateEndpoints()
@@ -63,54 +65,16 @@ void RestEndpoint::populateEndpoints()
 
 std::string RestEndpoint::getTagMethod(int tagIndex)
 {
-    int beginningIndex = 0;
-    int endIndex = 0;
-
-    for (int i = tagIndex; fs->at(i) != '('; i++)
-    {
-        endIndex = i + 1;
-        if (fs->at(i) == ' ')
-        {
-            beginningIndex = ++i; // last space encountered before name of function
-        }
-    }
-    return fs->substr(beginningIndex, endIndex - beginningIndex);
+    return getSymbolBetweenAfter(*fs, tagIndex, " ", "(");
 }
 
 std::string RestEndpoint::getTagComment(int tagIndex)
 {
-    int beginningIndex = 0;
-    int endIndex = tagIndex;
-    for (int i = tagIndex; fs->substr(i - 3, 3) != "/**"; i--)
-    {
-        beginningIndex = i;
-        if (fs->substr(i, 2) == "*/")
-        {
-            endIndex = i;
-        }
-        if (fs->at(i) == '}' || fs->at(i) == '{')
-        { // There was no comment before previous function begins
-            return "No Comment Found\n";
-        }
-    }
 
-    std::string rawComment = fs->substr(beginningIndex, endIndex - beginningIndex);
-    for (int i = 0; i < rawComment.length(); i++)
-    {
-        if (rawComment.substr(i, 2) == "* ")
-        {
-            rawComment.erase(i, 2);
-        }
-    }
+    std::string rawComment = getSymbolBetweenBefore(*fs, tagIndex, "/**", "*/");
+    removeStringFromString(rawComment, "* ");
+    removeStringFromString(rawComment, "  ");
 
-    // Removes most occurrences of double spaces from comment
-    for (int i = 0; i < rawComment.length(); i++)
-    {
-        if (rawComment.substr(i, 2) == "  ")
-        {
-            rawComment.erase(i, 2);
-        }
-    }
     return rawComment;
 }
 

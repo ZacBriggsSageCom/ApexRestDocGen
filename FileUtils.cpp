@@ -22,22 +22,6 @@ void clsProjectParser(std::string directoryPath, std::list<RestEndpoint> &endpoi
     return;
 }
 
-void escapeWildcards(std::string &str)
-{
-    size_t index = 0;
-    while (true)
-    {
-        index = str.find("/*", index);
-        if (index == std::string::npos)
-        {
-            break;
-        }
-
-        str.replace(index, 2, "/\\*");
-        index += 2;
-    }
-}
-
 void convertToMarkdown(std::list<RestEndpoint> endpoints, std::string &markdownOut)
 {
     std::stringstream fmt;
@@ -45,7 +29,7 @@ void convertToMarkdown(std::list<RestEndpoint> endpoints, std::string &markdownO
 
     for (RestEndpoint r : endpoints)
     {
-        escapeWildcards(r.address);
+        replaceStringInString(r.address, "*", "\\*");
         for (rest_endpoint e : r.endpoints)
         {
             e.description.erase(std::remove(e.description.begin(), e.description.end(), '\n'), e.description.end());
