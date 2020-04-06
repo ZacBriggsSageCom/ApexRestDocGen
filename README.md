@@ -40,7 +40,7 @@ There are some flags available to customise how the program runs:
 If no options are provided defaults to `./ApexRestDoc -p ./ -o markdown` 
 
 Example usage:
-`./ApexRestDoc -p ../src -o confluence -i \_deprecated` would perform a search for endpoints at the 'src' folder one level above the executable and output in a format for confluence's markdown format.
+`./ApexRestDoc -p ../src -o confluence -i _deprecated` would perform a search for endpoints at the 'src' folder one level above the executable and output in a format for confluence's markdown format.
 
 Example output:
 | **Name** | **Address** | **HTTP Method** | **Class Method** | **Description** |
