@@ -3,7 +3,7 @@
 
 void RestEndpoint::populateAddress()
 {
-    address = getSymbolBetweenAfter(*fs, 0, "='", "')");
+    address = getSymbolBetweenAfter(*fs, mapToIndex[tags[0]], "'", "')");
 }
 
 void RestEndpoint::populateEndpoints()
@@ -32,7 +32,7 @@ std::string RestEndpoint::getTagComment(int tagIndex)
 {
 
     std::string rawComment = getSymbolBetweenBefore(*fs, tagIndex, "/**", "*/");
-    removeStringFromString(rawComment, "* ");
+    removeStringFromString(rawComment, " *");
     removeStringFromString(rawComment, "  ");
 
     return rawComment;

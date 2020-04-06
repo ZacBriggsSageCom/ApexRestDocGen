@@ -5,8 +5,15 @@ void clsProjectParser(std::string directoryPath, std::list<RestEndpoint> &endpoi
     ClsFile *fileReader;
     RestEndpoint *rest;
     // Iterate through directories
+    if (!fs::directory_entry(directoryPath).exists())
+    {
+        throw std::invalid_argument("Directory not found");
+        return;
+    }
+
     for (auto &p : fs::recursive_directory_iterator(directoryPath))
     {
+
         // Ignore if path contains '_deprecated' && Only create files for files ending in .cls
         if (p.path().string().find("_deprecated") == std::string::npos && p.path().extension().string() == ".cls")
         {
@@ -22,7 +29,6 @@ void clsProjectParser(std::string directoryPath, std::list<RestEndpoint> &endpoi
             }
         }
     }
-    return;
 }
 
 void processToConfluenceMarkup(std::list<RestEndpoint> endpoints, std::string &markdownOut)
