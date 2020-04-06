@@ -37,12 +37,12 @@ There are some flags available to customise how the program runs:
 - **-o** [confluence, markdown] indicate whether to provide output as confluence markup or markdown table.
 - **-i** [directory name to ignore] provide a string to ignore directories which have paths containing the string. e.g. given 'test' would ignore all folders named 'test' and their subfolders.
 
-If no options are provided defaults to `./ApexRestDoc -p ./ -o markdown` 
+If no options are provided defaults to `./ApexRestDoc -p ./ -o confluence` 
 
 Example usage:
-`./ApexRestDoc -p ../src -o markdown -i _deprecated` would perform a search for endpoints at the 'src' folder one level above the executable and output in a format for confluence's markdown format.
+`./ApexRestDoc -p ../src -o markdown -i _deprecated` would perform a search for endpoints at the 'src' folder one level above the executable and output in a format for confluence's markup format.
 
-Example output:
+Example markdown output:
 | **Name** | **Address** | **HTTP Method** | **Class Method** | **Description** |
 | -------- | ----------- | --------------- | ---------------- | --------------- |
 | ObjectiveRest | /tm/\*/objective/\* | Get | getObjectives |  Gets all of the subject team member's objectives.  |
