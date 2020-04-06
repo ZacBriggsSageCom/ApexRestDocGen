@@ -8,3 +8,8 @@ ClsFile::ClsFile(std::string filePath, std::string nFileName)
     this->fileName = nFileName;
     this->endpoint = new RestEndpoint(fileString, fileName);
 }
+
+ClsFile::~ClsFile()
+{
+    delete endpoint;
+}

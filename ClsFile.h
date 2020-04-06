@@ -15,6 +15,8 @@ public:
     RestEndpoint *endpoint;
 
     explicit ClsFile(std::string filePath, std::string nFileName);
+
+    ~ClsFile();
 };
 
 #endif

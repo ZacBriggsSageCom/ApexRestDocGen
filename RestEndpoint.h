@@ -43,6 +43,8 @@ public:
 
     void print();
 
+    ~RestEndpoint();
+
 private:
     void setFile(std::string file);
 

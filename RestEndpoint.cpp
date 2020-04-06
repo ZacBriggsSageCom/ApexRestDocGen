@@ -88,3 +88,7 @@ RestEndpoint::RestEndpoint(std::string &file, std::string &fileName)
         populateAddress();
     }
 }
+
+RestEndpoint::~RestEndpoint()
+{
+}

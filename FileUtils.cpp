@@ -16,6 +16,10 @@ void clsProjectParser(std::string directoryPath, std::list<RestEndpoint> &endpoi
             {
                 endpointsOut.push_back(*fileReader->endpoint);
             }
+            else
+            {
+                delete (fileReader);
+            }
         }
     }
     return;
