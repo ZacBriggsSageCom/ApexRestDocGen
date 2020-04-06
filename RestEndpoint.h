@@ -16,13 +16,6 @@ struct rest_endpoint
 class RestEndpoint
 {
 public:
-    const std::string ADDRESS_TAG = "@RestResource";
-    const std::string GET_TAG = "@HttpGet";
-    const std::string POST_TAG = "@HttpPost";
-    const std::string PUT_TAG = "@HttpPut";
-    const std::string PATCH_TAG = "@HttpPatch";
-    const std::string DELETE_TAG = "@HttpDelete";
-
     std::string *fs;
     std::string filename;
 
