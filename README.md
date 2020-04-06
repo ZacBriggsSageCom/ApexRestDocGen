@@ -28,16 +28,16 @@ cmake --build ./ --config Release
 
 ### Executing program
 
-The program can be executed from a terminal / shell, from a containing directory, with `./ApexRestDoc` or `./ApexRestDoc.exe` on windows.  
+The program can be executed from a terminal / shell by `./ApexRestDoc` or, on windows, `./ApexRestDoc.exe`.
 
 ### With options  
 
 There are some flags available to customise how the program runs:
-- **-p** [relative path] provide a path relative to the executable to search for endpoints from
+- **-p** [relative path] provide a relative path to a the base directory to perform the search for endpoints.
 - **-o** [confluence, markdown] indicate whether to provide output as confluence markup or markdown table.
 - **-i** [directory name to ignore] provide a string to ignore directories which have paths containing the string. e.g. given 'test' would ignore all folders named 'test' and their subfolders.
 
-If no options are provided defaults to `./ApexRestDoc -p ./ -o markdown`
+If no options are provided defaults to `./ApexRestDoc -p ./ -o markdown` 
 
 Example usage:
 `./ApexRestDoc -p ../src -o confluence -i \_deprecated` would perform a search for endpoints at the 'src' folder one level above the executable and output in a format for confluence's markdown format.
