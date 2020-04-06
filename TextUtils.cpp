@@ -28,7 +28,7 @@ std::string getSymbolBetweenBefore(std::string &input, int searchFromIndex, std:
 
         if (input.at(i) == '}' || input.at(i) == '{')
         { // There was no comment before previous function begins
-            return "No Doc Comment Found Above Method\n";
+            return "No doc comment found\n";
         }
     }
     return getSymbolBetweenAfter(input, indexStart, matchStart, matchEnd);

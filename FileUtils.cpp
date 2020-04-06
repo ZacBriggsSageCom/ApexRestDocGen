@@ -36,7 +36,6 @@ void processToConfluenceMarkup(std::list<RestEndpoint> endpoints, std::string &m
     std::stringstream fmt;
     fmt << "The following output is a table compatible with Confluence Wiki Markup:\n\n";
     fmt << "| *Name* | *Address* | *HTTP Method* | *Class Method* | *Description* |" << std::endl;
-
     for (RestEndpoint r : endpoints)
     {
         replaceStringInString(r.address, "*", "\\*");
@@ -52,8 +51,7 @@ void processToConfluenceMarkup(std::list<RestEndpoint> endpoints, std::string &m
 void processToMarkdown(std::list<RestEndpoint> endpoints, std::string &markdownOut)
 {
     std::stringstream fmt;
-    fmt << "The following output is a table compatble with markdown:\n\n";
-
+    fmt << "The following output is a table compatible with markdown:\n\n";
     fmt << "| **Name** | **Address** | **HTTP Method** | **Class Method** | **Description** |" << std::endl;
     fmt << "| -------- | ----------- | --------------- | ---------------- | --------------- |" << std::endl;
 
