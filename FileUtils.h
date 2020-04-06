@@ -14,7 +14,9 @@
 namespace fs = std::filesystem;
 
 void clsProjectParser(std::string directoryPath, std::list<RestEndpoint> &endpointsOut);
-void processToConfluenceMarkup(std::list<RestEndpoint> endpoints, std::string &markdownOut);
-void processToMarkdown(std::list<RestEndpoint> endpoints, std::string &markdownOut);
+void clsProjectParserWithIgnore(std::string directoryPath, std::list<RestEndpoint> &endpointsOut, std::string ignoreString);
 
+void processToConfluenceMarkup(std::list<RestEndpoint> endpoints, std::string &markdownOut);
+
+void processToMarkdown(std::list<RestEndpoint> endpoints, std::string &markdownOut);
 #endif

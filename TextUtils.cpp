@@ -21,7 +21,6 @@ std::string getSymbolBetweenAfter(std::string &input, int searchFromIndex, std::
 std::string getSymbolBetweenBefore(std::string &input, int searchFromIndex, std::string matchStart, std::string matchEnd)
 {
     int indexStart = 0;
-
     for (int i = searchFromIndex; input.substr(i, matchStart.length()) != matchStart; i--)
     {
         indexStart = i - matchStart.length();
